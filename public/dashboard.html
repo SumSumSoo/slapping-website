@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Slapping Website</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">👋 Slapping Website</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <h1>Your Slapping Dashboard 📊</h1>
+                <p id="userGreeting"></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <!-- Stats -->
+                <div class="stats-section">
+                    <h2>Your Stats</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="peopleSlaped">0</div>
+                            <div class="stat-label">People Slapped</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalSlaps">0</div>
+                            <div class="stat-label">Total Slaps Logged</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Log Slap Form -->
+                <div class="log-slap-section">
+                    <h2>Log a New Slap 👋</h2>
+                    <form id="logSlapForm" class="form">
+                        <div class="form-group">
+                            <label for="slapName">Person Being Slapped</label>
+                            <input type="text" id="slapName" name="name" required placeholder="Enter their name">
+                        </div>
+                        <div class="form-group">
+                            <label for="slapEmail">Their Email (optional)</label>
+                            <input type="email" id="slapEmail" name="email" placeholder="For digest emails">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="slapDate">Slap Date</label>
+                                <input type="date" id="slapDate" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="slapSeverity">Severity</label>
+                                <select id="slapSeverity" name="severity">
+                                    <option value="mild">Mild</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="severe">Severe</option>
+                                    <option value="legendary">Legendary 🔥</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="slapReason">Reason for Slap</label>
+                            <textarea id="slapReason" name="reason" placeholder="Why did they deserve this slap?" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log Slap 🎯</button>
+                    </form>
+                </div>
+
+                <!-- Top Targets -->
+                <div class="top-targets-section">
+                    <h2>Your Top Slap Targets 🎯</h2>
+                    <div id="topTargets" class="targets-list">
+                        <p class="loading">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- Slap History -->
+                <div class="history-section">
+                    <h2>Recent Slaps 📋</h2>
+                    <div id="slapHistory" class="history-list">
+                        <p class="loading">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Slapping Website. Keep slapping, stay awesome! 😄</p>
+        </div>
+    </footer>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
