@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slapping Website - Track Your Slaps 👋</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">👋 Slapping Website</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+                <li><a href="#" id="dashboardLink" style="display: none;">Dashboard</a></li>
+                <li><a href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+                <li><a href="#" id="loginLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Auth Container -->
+        <div id="authContainer" class="container">
+            <!-- Login Form -->
+            <div id="loginForm" class="form-section">
+                <h1>Welcome to Slapping Website 👋</h1>
+                <p class="subtitle">Track all your humorous slaps with style</p>
+                
+                <form id="loginFormElement" class="form">
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login 🎯</button>
+                    <p class="form-switch">New here? <a href="#" onclick="toggleForm(); return false;">Create an account</a></p>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="registerForm" class="form-section" style="display: none;">
+                <h1>Join the Slapping World 👋</h1>
+                <p class="subtitle">Start tracking your slaps today</p>
+                
+                <form id="registerFormElement" class="form">
+                    <div class="form-group">
+                        <label for="regUsername">Username</label>
+                        <input type="text" id="regUsername" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" name="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regConfirm">Confirm Password</label>
+                        <input type="password" id="regConfirm" name="confirm" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Sign Up 🚀</button>
+                    <p class="form-switch">Already have an account? <a href="#" onclick="toggleForm(); return false;">Login</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Why Use Slapping Website?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Track Slaps</h3>
+                        <p>Log every slap with dates, reasons, and severity levels</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Earn Badges</h3>
+                        <p>Unlock achievements as you reach slap milestones</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👑</div>
+                        <h3>Leaderboard</h3>
+                        <p>See who's the most slapped person around</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📧</div>
+                        <h3>Email Digests</h3>
+                        <p>Get daily and weekly reports of your slap stats</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Slapping Website. Created with ❤️ and lots of humor.</p>
+        </div>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

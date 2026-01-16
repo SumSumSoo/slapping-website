@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Slapping Website</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">👋 Slapping Website</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+                <li><a href="/dashboard" id="dashboardLink" style="display: none;">Dashboard</a></li>
+                <li><a href="#" id="logoutBtn" style="display: none;">Logout</a></li>
+                <li><a href="/" id="loginLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="leaderboard-header">
+                <h1>🏆 Slap Leaderboard 🏆</h1>
+                <p class="subtitle">Who's getting slapped the most?</p>
+            </div>
+
+            <div class="leaderboard-section">
+                <div id="leaderboard" class="leaderboard-table">
+                    <div class="loading">Loading leaderboard...</div>
+                </div>
+            </div>
+
+            <!-- Top 3 Cards -->
+            <div class="top-three">
+                <div id="topThreeCards" class="top-three-grid">
+                    <div class="loading">Loading top slapped...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Slapping Website. The only place where getting slapped is an achievement! 😂</p>
+        </div>
+    </footer>
+
+    <script src="/js/leaderboard.js"></script>
+</body>
+</html>
