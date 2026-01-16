@@ -1,5 +1,4 @@
 import sqlite3 from 'sqlite3';
-import { open } from 'sqlite';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -8,11 +7,38 @@ const dbPath = path.join(__dirname, '..', 'slaps.db');
 
 let db = null;
 
+function promisifyDb(database) {
+    return {
+        run: (sql, params = []) => new Promise((resolve, reject) => {
+            database.run(sql, params, function(err) {
+                if (err) reject(err);
+                else resolve({ lastID: this.lastID, changes: this.changes });
+            });
+        }),
+        get: (sql, params = []) => new Promise((resolve, reject) => {
+            database.get(sql, params, (err, row) => {
+                if (err) reject(err);
+                else resolve(row);
+            });
+        }),
+        all: (sql, params = []) => new Promise((resolve, reject) => {
+            database.all(sql, params, (err, rows) => {
+                if (err) reject(err);
+                else resolve(rows || []);
+            });
+        }),
+        exec: (sql) => new Promise((resolve, reject) => {
+            database.exec(sql, (err) => {
+                if (err) reject(err);
+                else resolve();
+            });
+        })
+    };
+}
+
 async function initializeDatabase() {
-    db = await open({
-        filename: dbPath,
-        driver: sqlite3.Database
-    });
+    const sqliteDb = new sqlite3.Database(dbPath);
+    db = promisifyDb(sqliteDb);
 
     // Enable foreign keys
     await db.exec('PRAGMA foreign_keys = ON');
@@ -78,16 +104,16 @@ async function initializeDatabase() {
 
     // Insert default badges
     const badgeCount = await db.get('SELECT COUNT(*) as count FROM badges');
-    if (badgeCount.count === 0) {
+    if (badgeCount && badgeCount.count === 0) {
         await db.run(`
             INSERT INTO badges (name, description, threshold, icon) VALUES
-            ('Slap Target 🎯', 'Reached 10 lifetime slaps', 10, '🎯'),
-            ('Slap Legend 🏆', 'Reached 50 lifetime slaps', 50, '🏆'),
-            ('Slap King 👑', 'Reached 100 lifetime slaps', 100, '👑'),
-            ('Slap Emperor 🔥', 'Reached 250 lifetime slaps', 250, '🔥'),
-            ('Slap Deity 😱', 'Reached 500 lifetime slaps', 500, '😱'),
-            ('One in a Day 📈', 'Received 5+ slaps in one day', 5, '📈'),
-            ('Slap Streak 🌟', 'Slapped every day for a week', 7, '🌟')
+            ('Slap Target', 'Reached 10 lifetime slaps', 10, '🎯'),
+            ('Slap Legend', 'Reached 50 lifetime slaps', 50, '🏆'),
+            ('Slap King', 'Reached 100 lifetime slaps', 100, '👑'),
+            ('Slap Emperor', 'Reached 250 lifetime slaps', 250, '🔥'),
+            ('Slap Deity', 'Reached 500 lifetime slaps', 500, '😱'),
+            ('One in a Day', 'Received 5+ slaps in one day', 5, '📈'),
+            ('Slap Streak', 'Slapped every day for a week', 7, '🌟')
         `);
     }
 
